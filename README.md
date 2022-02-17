@@ -15,7 +15,7 @@
    I learned more about the compiler options and found the `tsc -w` command really useful. It was also really informative looking at the .js output file to see what TS does. Most of the code was identical to the TS file.
 
 5. **Functions**
-   I learned how to encapsulate all variables inside functions to keep the global space less polluted. I learned more about scopes (function and lexical) and used `let` where I could. I noticed that the transpiler changed everything to `var`.
+   I learned how to encapsulate all variables inside functions to keep the global space less polluted. I learned more about scopes (function and lexical) and used `let`. I noticed that the transpiler changed everything to `var`. I plan to use `const` moving forward.
 
 6. **Branching and Looping**
    The most difficult part was writing the logic for the main `game()` function. I decided to use switch statements because I found the nested if-else statements visually overwhelming. I like having a switch, then one nesting of if-else, this made the code easier on the eyes.
