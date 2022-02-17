@@ -20,7 +20,7 @@
 6. **Branching and Looping**
    The most difficult part was writing the logic for the main `game()` function. I decided to use switch statements because I found the nested if-else statements visually overwhelming. I like having a switch, then one nesting of if-else, this made the code easier on the eyes.
 
-I learned how to call functions within a for-loop. It was difficult visualizing the code inside loops. Using a debugger was thoroughly illuminating.
+   I learned how to call functions within a for-loop. It was difficult visualizing the code inside loops. Using a debugger was thoroughly illuminating.
 
 7. **Debugger**
    The browser debugger was amazing! Using breakpoints, I stepped through the entire script and was able to see how the values continually changed. Best part was stepping inside loops. Made everything significantly easier than peppering my code with `console.log()`
