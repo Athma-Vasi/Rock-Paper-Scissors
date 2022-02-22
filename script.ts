@@ -75,6 +75,12 @@ function gameWinner(_winner: string) {
 	const tieCard = document.querySelector('.tieCard')
 	tieCard.textContent = scoreState.tie.toString()
 
+	const playerChoice = document.querySelector('.playerChoice')
+	playerChoice.textContent = state.playerSelection
+
+	const compChoice = document.querySelector('.compChoice')
+	compChoice.textContent = state.compSelection
+
 	if (_winner === 'tie') {
 		scoreState.tie++
 		tieCard.textContent = scoreState.tie.toString()

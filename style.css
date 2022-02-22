@@ -33,10 +33,17 @@
 .tieCard,
 .playerName,
 .compName,
-.tieName {
+.tieName,
+.playerChose,
+.compChose,
+.playerChoice,
+.compChoice {
 	font-size: medium;
 	margin: 1rem 1rem 1rem 1rem;
 	color: hsl(338.82, 10.18%, 32.75%);
+}
+
+ {
 }
 .rock,
 .paper,

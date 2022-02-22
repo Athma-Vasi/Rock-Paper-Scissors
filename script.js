@@ -69,6 +69,10 @@ function gameWinner(_winner) {
     compCard.textContent = scoreState.compScore.toString();
     var tieCard = document.querySelector('.tieCard');
     tieCard.textContent = scoreState.tie.toString();
+    var playerChoice = document.querySelector('.playerChoice');
+    playerChoice.textContent = state.playerSelection;
+    var compChoice = document.querySelector('.compChoice');
+    compChoice.textContent = state.compSelection;
     if (_winner === 'tie') {
         scoreState.tie++;
         tieCard.textContent = scoreState.tie.toString();
