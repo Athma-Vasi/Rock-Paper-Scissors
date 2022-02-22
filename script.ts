@@ -64,17 +64,28 @@ function playRound(_state: State) {
 }
 
 function gameWinner(_winner: string) {
+	const winnerText = document.querySelector('.winner')
+
+	const playerCard = document.querySelector('.playerCard')
+	playerCard.textContent = scoreState.playerScore.toString()
+
+	const compCard = document.querySelector('.compCard')
+	compCard.textContent = scoreState.compScore.toString()
+
+	const tieCard = document.querySelector('.tieCard')
+	tieCard.textContent = scoreState.tie.toString()
+
 	if (_winner === 'tie') {
 		scoreState.tie++
-		console.log(scoreState)
+		tieCard.textContent = scoreState.tie.toString()
 	}
 
 	if (_winner === 'player') {
 		scoreState.playerScore++
-		console.log(scoreState)
+		playerCard.textContent = scoreState.playerScore.toString()
 	} else if (_winner === 'comp') {
 		scoreState.compScore++
-		console.log(scoreState)
+		compCard.textContent = scoreState.compScore.toString()
 	}
 
 	if (scoreState.playerScore === 5) {
@@ -98,14 +109,13 @@ function gameWinner(_winner: string) {
 	}
 }
 
-const winnerText = document.querySelector('.winner')
-
 const rockBttn = document.querySelector('.rock')
 const rockWinner = rockBttn.addEventListener('click', () => {
 	state.playerSelection = 'rock'
 	state.compSelection = computerPlay()
 
 	let winner = playRound(state)
+
 	gameWinner(winner)
 })
 
@@ -113,6 +123,7 @@ const paperBttn = document.querySelector('.paper')
 paperBttn.addEventListener('click', () => {
 	state.playerSelection = 'paper'
 	state.compSelection = computerPlay()
+
 	let winner = playRound(state)
 	gameWinner(winner)
 })
@@ -121,42 +132,7 @@ const scissorsBttn = document.querySelector('.scissors')
 scissorsBttn.addEventListener('click', () => {
 	state.playerSelection = 'scissors'
 	state.compSelection = computerPlay()
+
 	let winner = playRound(state)
 	gameWinner(winner)
 })
-
-//~~Logic from the first part~~
-//
-// function playerPlay() {
-// 	let playerSelection = prompt(
-// 		" Hi! Enter 'rock' or 'paper' or 'scissors'! "
-// 	).toLowerCase()
-// 	return playerSelection
-// }
-//
-// function game(
-// 	_playRoundFN: typeof playRound,
-// 	state_.playerSelectionFN: typeof playerPlay,
-// 	state_.compSelectionFN: typeof computerPlay
-// ) {
-// 	var playerScore = 0
-// 	var computerScore = 0
-//
-// 	for (let i = 1; i <= 5; i++) {
-// 		var winner = _playRoundFN(state_.playerSelectionFN, state_.compSelectionFN)
-// 		switch (winner) {
-// 			case 'player wins':
-// 				playerScore++
-// 				console.log(`round ${i}: player wins, score: ${playerScore}`)
-// 				break
-// 			case 'comp wins':
-// 				computerScore++
-// 				console.log(`round ${i}: comp wins, score: ${computerScore}`)
-// 				break
-// 			default:
-// 				console.log('hmm tie')
-// 		}
-// 	}
-// }
-//
-// game(playRound, playerPlay, computerPlay)

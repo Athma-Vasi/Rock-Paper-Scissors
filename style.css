@@ -18,7 +18,6 @@
 }
 
 .hero,
-.hero-text,
 .winner {
 	margin: 2rem 2rem 2rem 2rem;
 	color: hsl(338.82, 10.18%, 32.75%);
@@ -27,6 +26,17 @@
 .winner {
 	font-size: 3em;
 	color: hsl(0, 82.76%, 65.88%);
+}
+
+.playerCard,
+.compCard,
+.tieCard,
+.playerName,
+.compName,
+.tieName {
+	font-size: medium;
+	margin: 1rem 1rem 1rem 1rem;
+	color: hsl(338.82, 10.18%, 32.75%);
 }
 .rock,
 .paper,
