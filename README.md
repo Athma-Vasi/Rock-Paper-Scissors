@@ -27,3 +27,4 @@
 -More css properties and alignment, especially flex and grid.
 -Make things more aesthetically pleasing
 -How to avoid modifying values outside function scope.
+-git...accidentally deleted entire work and had to restore
