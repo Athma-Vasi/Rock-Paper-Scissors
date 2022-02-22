@@ -61,123 +61,62 @@ function playRound(_state) {
     }
     return isPlayerWinner ? 'player' : 'comp';
 }
-var gameWinner = document.querySelector('.winner');
-var rockBttn = document.querySelector('.rock');
-var rockWinner = rockBttn.addEventListener('click', function () {
-    state.playerSelection = 'rock';
-    state.compSelection = computerPlay();
-    var winner = playRound(state);
-    if (winner === 'tie') {
+function gameWinner(_winner) {
+    if (_winner === 'tie') {
         scoreState.tie++;
         console.log(scoreState);
     }
-    if (winner === 'player') {
+    if (_winner === 'player') {
         scoreState.playerScore++;
         console.log(scoreState);
     }
-    else if (winner === 'comp') {
+    else if (_winner === 'comp') {
         scoreState.compScore++;
         console.log(scoreState);
     }
     if (scoreState.playerScore === 5) {
-        gameWinner.textContent = 'Congrats! You won!';
+        winnerText.textContent = 'Congrats! You won!';
         //reset
         scoreState.playerScore = 0;
         scoreState.compScore = 0;
         scoreState.tie = 0;
     }
     else if (scoreState.compScore === 5) {
-        gameWinner.textContent = 'Oh no! Computer won...';
+        winnerText.textContent = 'Oh no! Computer won...';
         //reset
         scoreState.playerScore = 0;
         scoreState.compScore = 0;
         scoreState.tie = 0;
     }
     else if (scoreState.tie === 5) {
-        gameWinner.textContent = 'Tie! How about another round?';
+        winnerText.textContent = 'Tie! How about another round?';
         //reset
         scoreState.playerScore = 0;
         scoreState.compScore = 0;
         scoreState.tie = 0;
     }
+}
+var winnerText = document.querySelector('.winner');
+var rockBttn = document.querySelector('.rock');
+var rockWinner = rockBttn.addEventListener('click', function () {
+    state.playerSelection = 'rock';
+    state.compSelection = computerPlay();
+    var winner = playRound(state);
+    gameWinner(winner);
 });
 var paperBttn = document.querySelector('.paper');
 paperBttn.addEventListener('click', function () {
     state.playerSelection = 'paper';
     state.compSelection = computerPlay();
     var winner = playRound(state);
-    if (winner === 'tie') {
-        scoreState.tie++;
-        console.log(scoreState);
-    }
-    if (winner === 'player') {
-        scoreState.playerScore++;
-        console.log(scoreState);
-    }
-    else if (winner === 'comp') {
-        scoreState.compScore++;
-        console.log(scoreState);
-    }
-    if (scoreState.playerScore === 5) {
-        gameWinner.textContent = 'Congrats! You won!';
-        //reset
-        scoreState.playerScore = 0;
-        scoreState.compScore = 0;
-        scoreState.tie = 0;
-    }
-    else if (scoreState.compScore === 5) {
-        gameWinner.textContent = 'Oh no! Computer won...';
-        //reset
-        scoreState.playerScore = 0;
-        scoreState.compScore = 0;
-        scoreState.tie = 0;
-    }
-    else if (scoreState.tie === 5) {
-        gameWinner.textContent = 'Tie! How about another round?';
-        //reset
-        scoreState.playerScore = 0;
-        scoreState.compScore = 0;
-        scoreState.tie = 0;
-    }
+    gameWinner(winner);
 });
 var scissorsBttn = document.querySelector('.scissors');
 scissorsBttn.addEventListener('click', function () {
     state.playerSelection = 'scissors';
     state.compSelection = computerPlay();
     var winner = playRound(state);
-    if (winner === 'tie') {
-        scoreState.tie++;
-        console.log(scoreState);
-    }
-    if (winner === 'player') {
-        scoreState.playerScore++;
-        console.log(scoreState);
-    }
-    else if (winner === 'comp') {
-        scoreState.compScore++;
-        console.log(scoreState);
-    }
-    if (scoreState.playerScore === 5) {
-        gameWinner.textContent = 'Congrats! You won!';
-        //reset
-        scoreState.playerScore = 0;
-        scoreState.compScore = 0;
-        scoreState.tie = 0;
-    }
-    else if (scoreState.compScore === 5) {
-        gameWinner.textContent = 'Oh no! Computer won...';
-        //reset
-        scoreState.playerScore = 0;
-        scoreState.compScore = 0;
-        scoreState.tie = 0;
-    }
-    else if (scoreState.tie === 5) {
-        gameWinner.textContent = 'Tie! How about another round?';
-        //reset
-        scoreState.playerScore = 0;
-        scoreState.compScore = 0;
-        scoreState.tie = 0;
-    }
+    gameWinner(winner);
 });
 //~~Logic from the first part~~
 //

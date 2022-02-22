@@ -63,7 +63,42 @@ function playRound(_state: State) {
 	return isPlayerWinner ? 'player' : 'comp'
 }
 
-const gameWinner = document.querySelector('.winner')
+function gameWinner(_winner: string) {
+	if (_winner === 'tie') {
+		scoreState.tie++
+		console.log(scoreState)
+	}
+
+	if (_winner === 'player') {
+		scoreState.playerScore++
+		console.log(scoreState)
+	} else if (_winner === 'comp') {
+		scoreState.compScore++
+		console.log(scoreState)
+	}
+
+	if (scoreState.playerScore === 5) {
+		winnerText.textContent = 'Congrats! You won!'
+		//reset
+		scoreState.playerScore = 0
+		scoreState.compScore = 0
+		scoreState.tie = 0
+	} else if (scoreState.compScore === 5) {
+		winnerText.textContent = 'Oh no! Computer won...'
+		//reset
+		scoreState.playerScore = 0
+		scoreState.compScore = 0
+		scoreState.tie = 0
+	} else if (scoreState.tie === 5) {
+		winnerText.textContent = 'Tie! How about another round?'
+		//reset
+		scoreState.playerScore = 0
+		scoreState.compScore = 0
+		scoreState.tie = 0
+	}
+}
+
+const winnerText = document.querySelector('.winner')
 
 const rockBttn = document.querySelector('.rock')
 const rockWinner = rockBttn.addEventListener('click', () => {
@@ -71,39 +106,7 @@ const rockWinner = rockBttn.addEventListener('click', () => {
 	state.compSelection = computerPlay()
 
 	let winner = playRound(state)
-
-	if (winner === 'tie') {
-		scoreState.tie++
-		console.log(scoreState)
-	}
-
-	if (winner === 'player') {
-		scoreState.playerScore++
-		console.log(scoreState)
-	} else if (winner === 'comp') {
-		scoreState.compScore++
-		console.log(scoreState)
-	}
-
-	if (scoreState.playerScore === 5) {
-		gameWinner.textContent = 'Congrats! You won!'
-		//reset
-		scoreState.playerScore = 0
-		scoreState.compScore = 0
-		scoreState.tie = 0
-	} else if (scoreState.compScore === 5) {
-		gameWinner.textContent = 'Oh no! Computer won...'
-		//reset
-		scoreState.playerScore = 0
-		scoreState.compScore = 0
-		scoreState.tie = 0
-	} else if (scoreState.tie === 5) {
-		gameWinner.textContent = 'Tie! How about another round?'
-		//reset
-		scoreState.playerScore = 0
-		scoreState.compScore = 0
-		scoreState.tie = 0
-	}
+	gameWinner(winner)
 })
 
 const paperBttn = document.querySelector('.paper')
@@ -111,38 +114,7 @@ paperBttn.addEventListener('click', () => {
 	state.playerSelection = 'paper'
 	state.compSelection = computerPlay()
 	let winner = playRound(state)
-	if (winner === 'tie') {
-		scoreState.tie++
-		console.log(scoreState)
-	}
-
-	if (winner === 'player') {
-		scoreState.playerScore++
-		console.log(scoreState)
-	} else if (winner === 'comp') {
-		scoreState.compScore++
-		console.log(scoreState)
-	}
-
-	if (scoreState.playerScore === 5) {
-		gameWinner.textContent = 'Congrats! You won!'
-		//reset
-		scoreState.playerScore = 0
-		scoreState.compScore = 0
-		scoreState.tie = 0
-	} else if (scoreState.compScore === 5) {
-		gameWinner.textContent = 'Oh no! Computer won...'
-		//reset
-		scoreState.playerScore = 0
-		scoreState.compScore = 0
-		scoreState.tie = 0
-	} else if (scoreState.tie === 5) {
-		gameWinner.textContent = 'Tie! How about another round?'
-		//reset
-		scoreState.playerScore = 0
-		scoreState.compScore = 0
-		scoreState.tie = 0
-	}
+	gameWinner(winner)
 })
 
 const scissorsBttn = document.querySelector('.scissors')
@@ -150,38 +122,7 @@ scissorsBttn.addEventListener('click', () => {
 	state.playerSelection = 'scissors'
 	state.compSelection = computerPlay()
 	let winner = playRound(state)
-	if (winner === 'tie') {
-		scoreState.tie++
-		console.log(scoreState)
-	}
-
-	if (winner === 'player') {
-		scoreState.playerScore++
-		console.log(scoreState)
-	} else if (winner === 'comp') {
-		scoreState.compScore++
-		console.log(scoreState)
-	}
-
-	if (scoreState.playerScore === 5) {
-		gameWinner.textContent = 'Congrats! You won!'
-		//reset
-		scoreState.playerScore = 0
-		scoreState.compScore = 0
-		scoreState.tie = 0
-	} else if (scoreState.compScore === 5) {
-		gameWinner.textContent = 'Oh no! Computer won...'
-		//reset
-		scoreState.playerScore = 0
-		scoreState.compScore = 0
-		scoreState.tie = 0
-	} else if (scoreState.tie === 5) {
-		gameWinner.textContent = 'Tie! How about another round?'
-		//reset
-		scoreState.playerScore = 0
-		scoreState.compScore = 0
-		scoreState.tie = 0
-	}
+	gameWinner(winner)
 })
 
 //~~Logic from the first part~~
