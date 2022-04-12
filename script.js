@@ -1,130 +1,139 @@
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
+document.addEventListener('DOMContentLoaded', function () {
+    var rockBttn = document === null || document === void 0 ? void 0 : document.querySelector('.bttn-rock');
+    var paperBttn = document === null || document === void 0 ? void 0 : document.querySelector('.bttn-paper');
+    var scissorsBttn = document === null || document === void 0 ? void 0 : document.querySelector('.bttn-scissors');
+    var restartBttn = document === null || document === void 0 ? void 0 : document.querySelector('.bttn-restart');
+    var playerScore = document === null || document === void 0 ? void 0 : document.querySelector('.td-playerScore');
+    var computerScore = document === null || document === void 0 ? void 0 : document.querySelector('.td-compScore');
+    var tieScore = document === null || document === void 0 ? void 0 : document.querySelector('.td-tieScore');
+    var displayScorePlayer = document === null || document === void 0 ? void 0 : document.querySelector('.displayScore-player');
+    var displayScoreComputer = document === null || document === void 0 ? void 0 : document.querySelector('.displayScore-computer');
+    var displayScoreWinner = document === null || document === void 0 ? void 0 : document.querySelector('.displayScore-winner');
+    var state = {
+        playerSelection: '',
+        computerSelection: ''
     };
-    return __assign.apply(this, arguments);
-};
-function computerPlay(max) {
-    if (max === void 0) { max = 3; }
-    var choiceArr = ['rock', 'paper', 'scissors'];
-    var compRandNum = Math.floor(Math.random() * max);
-    var compChoice = choiceArr[compRandNum];
-    return compChoice;
-}
-var state = {
-    playerSelection: '',
-    compSelection: ''
-};
-var scoreState = {
-    playerScore: 0,
-    compScore: 0,
-    tie: 0
-};
-function playRound(_state) {
-    var state_ = __assign({}, _state);
-    var isPlayerWinner = true;
-    if (state_.playerSelection === state_.compSelection) {
-        return 'tie';
+    var scoreCard = {
+        player: 0,
+        computer: 0,
+        tie: 0
+    };
+    function displayScore(_state) {
+        displayScorePlayer === null
+            ? undefined
+            : (displayScorePlayer.textContent = "You chose: ".concat(_state.playerSelection));
+        displayScoreComputer === null
+            ? undefined
+            : (displayScoreComputer.textContent = "Computer chose: ".concat(_state.computerSelection));
     }
-    switch (state_.playerSelection) {
-        case 'rock':
-            if (state_.compSelection === 'scissors') {
-                isPlayerWinner = true;
+    function scoreKeeping(_scoreCard) {
+        playerScore === null
+            ? undefined
+            : (playerScore.textContent = _scoreCard.player.toString());
+        computerScore === null
+            ? undefined
+            : (computerScore.textContent = _scoreCard.computer.toString());
+        tieScore === null ? undefined : (tieScore.textContent = _scoreCard.tie.toString());
+    }
+    function displayWinner(winner) {
+        state.playerSelection = '';
+        state.computerSelection = '';
+        scoreCard.player = 0;
+        scoreCard.computer = 0;
+        scoreCard.tie = 0;
+        displayScorePlayer === null ? undefined : (displayScorePlayer.style.display = 'none');
+        displayScoreComputer === null
+            ? undefined
+            : (displayScoreComputer.style.display = 'none');
+        if (displayScoreWinner === null) {
+            undefined;
+        }
+        else {
+            if (winner === 'player') {
+                displayScoreWinner.textContent = 'Congrats! You won! Go on, give it another go!';
             }
-            else {
-                isPlayerWinner = false;
+            else if (winner === 'computer') {
+                displayScoreWinner.textContent = 'Oh no! Computer won! You can do it!';
             }
-            break;
-        case 'paper':
-            if (state_.compSelection === 'rock') {
-                isPlayerWinner = true;
+            else if (winner === 'tie') {
+                displayScoreWinner.textContent = 'There can be only one.';
             }
-            else {
-                isPlayerWinner = false;
-            }
-            break;
-        case 'scissors':
-            if (state_.compSelection === 'paper') {
-                isPlayerWinner = true;
-            }
-            else {
-                isPlayerWinner = false;
-            }
-            break;
-        default:
-            console.log("hmmm shouldn't see this...");
+        }
     }
-    return isPlayerWinner ? 'player' : 'comp';
-}
-function gameWinner(_winner) {
-    var winnerText = document.querySelector('.winner');
-    var playerCard = document.querySelector('.playerCard');
-    playerCard.textContent = scoreState.playerScore.toString();
-    var compCard = document.querySelector('.compCard');
-    compCard.textContent = scoreState.compScore.toString();
-    var tieCard = document.querySelector('.tieCard');
-    tieCard.textContent = scoreState.tie.toString();
-    var playerChoice = document.querySelector('.playerChoice');
-    playerChoice.textContent = state.playerSelection;
-    var compChoice = document.querySelector('.compChoice');
-    compChoice.textContent = state.compSelection;
-    if (_winner === 'tie') {
-        scoreState.tie++;
-        tieCard.textContent = scoreState.tie.toString();
+    function computerSelection(max) {
+        if (max === void 0) { max = 3; }
+        var choiceArr = ['rock', 'paper', 'scissors'];
+        var compRandom = Math.floor(Math.random() * max);
+        return choiceArr[compRandom];
     }
-    if (_winner === 'player') {
-        scoreState.playerScore++;
-        playerCard.textContent = scoreState.playerScore.toString();
+    function rockSelection() {
+        var _computerSelection = computerSelection();
+        state.playerSelection = 'rock';
+        state.computerSelection = _computerSelection;
+        if (_computerSelection === 'rock') {
+            scoreCard.tie === 4 ? displayWinner('tie') : scoreCard.tie++;
+        }
+        else if (_computerSelection === 'paper') {
+            scoreCard.computer === 4 ? displayWinner('computer') : scoreCard.computer++;
+        }
+        else {
+            scoreCard.player === 4 ? displayWinner('player') : scoreCard.player++;
+        }
+        scoreKeeping(scoreCard);
+        displayScore(state);
     }
-    else if (_winner === 'comp') {
-        scoreState.compScore++;
-        compCard.textContent = scoreState.compScore.toString();
+    function paperSelection() {
+        var _computerSelection = computerSelection();
+        state.playerSelection = 'paper';
+        state.computerSelection = _computerSelection;
+        if (_computerSelection === 'paper') {
+            scoreCard.tie === 4 ? displayWinner('tie') : scoreCard.tie++;
+        }
+        else if (_computerSelection === 'scissors') {
+            scoreCard.computer === 4 ? displayWinner('computer') : scoreCard.computer++;
+        }
+        else {
+            scoreCard.player === 4 ? displayWinner('player') : scoreCard.player++;
+        }
+        scoreKeeping(scoreCard);
+        displayScore(state);
     }
-    if (scoreState.playerScore === 5) {
-        winnerText.textContent = 'Congrats! You won!';
-        //reset
-        scoreState.playerScore = 0;
-        scoreState.compScore = 0;
-        scoreState.tie = 0;
+    function scissorsSelection() {
+        var _computerSelection = computerSelection();
+        state.playerSelection = 'scissors';
+        state.computerSelection = _computerSelection;
+        if (_computerSelection === 'scissors') {
+            scoreCard.tie === 4 ? displayWinner('tie') : scoreCard.tie++;
+        }
+        else if (_computerSelection === 'rock') {
+            scoreCard.computer === 4 ? displayWinner('computer') : scoreCard.computer++;
+        }
+        else {
+            scoreCard.player === 4 ? displayWinner('player') : scoreCard.player++;
+        }
+        scoreKeeping(scoreCard);
+        displayScore(state);
     }
-    else if (scoreState.compScore === 5) {
-        winnerText.textContent = 'Oh no! Computer won...';
-        //reset
-        scoreState.playerScore = 0;
-        scoreState.compScore = 0;
-        scoreState.tie = 0;
+    function restartGame() {
+        window.location.reload();
+        // state.playerSelection = ''
+        // state.computerSelection = ''
+        // scoreCard.player = 0
+        // scoreCard.computer = 0
+        // scoreCard.tie = 0
+        // playerScore === null
+        // 	? undefined
+        // 	: (playerScore.textContent = scoreCard.player.toString())
+        // computerScore === null
+        // 	? undefined
+        // 	: (computerScore.textContent = scoreCard.computer.toString())
+        // tieScore === null ? undefined : (tieScore.textContent = scoreCard.tie.toString())
+        // displayScorePlayer === null ? undefined : (displayScorePlayer.style.display = '')
+        // displayScoreComputer === null ? undefined : (displayScoreComputer.style.display = '')
+        // displayScoreWinner === null ? undefined : (displayScoreWinner.style.display = 'none')
     }
-    else if (scoreState.tie === 5) {
-        winnerText.textContent = 'Tie! How about another round?';
-        //reset
-        scoreState.playerScore = 0;
-        scoreState.compScore = 0;
-        scoreState.tie = 0;
-    }
-}
-var rockBttn = document.querySelector('.rock');
-var rockWinner = rockBttn.addEventListener('click', function () {
-    state.playerSelection = 'rock';
-    state.compSelection = computerPlay();
-    var winner = playRound(state);
-    gameWinner(winner);
-});
-var paperBttn = document.querySelector('.paper');
-paperBttn.addEventListener('click', function () {
-    state.playerSelection = 'paper';
-    state.compSelection = computerPlay();
-    var winner = playRound(state);
-    gameWinner(winner);
-});
-var scissorsBttn = document.querySelector('.scissors');
-scissorsBttn.addEventListener('click', function () {
-    state.playerSelection = 'scissors';
-    state.compSelection = computerPlay();
-    var winner = playRound(state);
-    gameWinner(winner);
+    rockBttn === null || rockBttn === void 0 ? void 0 : rockBttn.addEventListener('click', rockSelection);
+    paperBttn === null || paperBttn === void 0 ? void 0 : paperBttn.addEventListener('click', paperSelection);
+    scissorsBttn === null || scissorsBttn === void 0 ? void 0 : scissorsBttn.addEventListener('click', scissorsSelection);
+    restartBttn === null || restartBttn === void 0 ? void 0 : restartBttn.addEventListener('click', restartGame);
 });

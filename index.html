@@ -5,45 +5,46 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="style.css" />
-		<title>Fundamentals</title>
+		<title>Rock-Paper-Scissors</title>
 	</head>
 	<body class="body">
-		<header class="header">
-			<div class="container">
-				<h1 class="hero">Athma's Rock-Paper-Scissors!</h1>
-			</div>
-			<div class="container">
-				<div class="container">
-					<h2 class="playerName">Player</h2>
-					<h2 class="playerCard"></h2>
-				</div>
-				<div class="container">
-					<h2 class="compName">Computer</h2>
-					<h2 class="compCard"></h2>
-				</div>
-				<div class="container">
-					<h2 class="tieName">Tie</h2>
-					<h2 class="tieCard"></h2>
-				</div>
-			</div>
-			<div class="container">
-				<h3 class="playerChose">You chose:</h3>
-				<h4 class="playerChoice"></h4>
-			</div>
-			<div class="container">
-				<h3 class="compChose">Computer chose:</h3>
-				<h4 class="compChoice"></h4>
-			</div>
-			<div class="container"><h3 class="winner"></h3></div>
-		</header>
-		<section class="section">
-			<div class="container">
-				<button class="rock" type="button">Rock</button>
-				<button class="paper" type="button">Paper</button
-				><button class="scissors" type="button">Scissors</button>
-			</div>
-		</section>
+		<div class="container-all">
+			<h1 class="title">Rock-Paper-Scissors</h1>
 
-		<script src="./script.js"></script>
+			<div class="displayScore">
+				<h3 class="displayScore-player"></h3>
+				<h3 class="displayScore-winner"></h3>
+				<h3 class="displayScore-computer"></h3>
+			</div>
+
+			<table class="table">
+				<thead class="table-header">
+					<tr>
+						<th colspan="3">Scorecard</th>
+					</tr>
+				</thead>
+
+				<tbody class="table-body">
+					<tr>
+						<td>Player</td>
+						<td>Computer</td>
+						<td>Tie</td>
+					</tr>
+
+					<tr>
+						<td class="td-playerScore">0</td>
+						<td class="td-compScore">0</td>
+						<td class="td-tieScore">0</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<button class="bttn-rock">Rock</button>
+			<button class="bttn-paper">Paper</button>
+			<button class="bttn-scissors">Scissors</button>
+			<button class="bttn-restart">Play Again</button>
+		</div>
+
+		<script src="./script.js" defer></script>
 	</body>
 </html>
