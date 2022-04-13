@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+	let roundFlag = true
+
 	type Button = HTMLButtonElement | null
 	const rockBttn: Button = document?.querySelector('.bttn-rock')
 	const paperBttn: Button = document?.querySelector('.bttn-paper')
@@ -58,13 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	function displayWinner(winner: string): void | undefined {
-		state.playerSelection = ''
-		state.computerSelection = ''
-
-		scoreCard.player = 0
-		scoreCard.computer = 0
-		scoreCard.tie = 0
-
 		displayScorePlayer === null ? undefined : (displayScorePlayer.style.display = 'none')
 
 		displayScoreComputer === null
@@ -77,71 +72,78 @@ document.addEventListener('DOMContentLoaded', () => {
 			if (winner === 'player') {
 				displayScoreWinner.textContent = 'Congrats! You won! Go on, give it another go!'
 			} else if (winner === 'computer') {
-				displayScoreWinner.textContent = 'Oh no! Computer won! You can do it!'
+				displayScoreWinner.textContent = 'Oh no! Computer won!'
 			} else if (winner === 'tie') {
 				displayScoreWinner.textContent = 'There can be only one.'
 			}
 		}
+		roundFlag = false
 	}
 
 	function computerSelection(max = 3): string {
-		const choiceArr = ['rock', 'paper', 'scissors']
+		const choiceArr = ['Rock', 'Paper', 'Scissors']
 		const compRandom = Math.floor(Math.random() * max)
 		return choiceArr[compRandom]
 	}
 
 	function rockSelection(this: HTMLButtonElement): void {
-		const _computerSelection = computerSelection()
-		state.playerSelection = 'rock'
-		state.computerSelection = _computerSelection
+		if (roundFlag) {
+			const _computerSelection = computerSelection()
+			state.playerSelection = 'Rock'
+			state.computerSelection = _computerSelection
 
-		if (_computerSelection === 'rock') {
-			scoreCard.tie === 4 ? displayWinner('tie') : scoreCard.tie++
-		} else if (_computerSelection === 'paper') {
-			scoreCard.computer === 4 ? displayWinner('computer') : scoreCard.computer++
-		} else {
-			scoreCard.player === 4 ? displayWinner('player') : scoreCard.player++
+			if (_computerSelection === 'Rock') {
+				scoreCard.tie === 4 ? displayWinner('tie') : scoreCard.tie++
+			} else if (_computerSelection === 'Paper') {
+				scoreCard.computer === 4 ? displayWinner('computer') : scoreCard.computer++
+			} else {
+				scoreCard.player === 4 ? displayWinner('player') : scoreCard.player++
+			}
+
+			scoreKeeping(scoreCard)
+
+			displayScore(state)
 		}
-
-		scoreKeeping(scoreCard)
-
-		displayScore(state)
 	}
 
 	function paperSelection(this: HTMLButtonElement): void {
-		const _computerSelection = computerSelection()
-		state.playerSelection = 'paper'
-		state.computerSelection = _computerSelection
+		if (roundFlag) {
+			const _computerSelection = computerSelection()
+			state.playerSelection = 'Paper'
+			state.computerSelection = _computerSelection
 
-		if (_computerSelection === 'paper') {
-			scoreCard.tie === 4 ? displayWinner('tie') : scoreCard.tie++
-		} else if (_computerSelection === 'scissors') {
-			scoreCard.computer === 4 ? displayWinner('computer') : scoreCard.computer++
-		} else {
-			scoreCard.player === 4 ? displayWinner('player') : scoreCard.player++
+			if (_computerSelection === 'Paper') {
+				scoreCard.tie === 4 ? displayWinner('tie') : scoreCard.tie++
+			} else if (_computerSelection === 'Scissors') {
+				scoreCard.computer === 4 ? displayWinner('computer') : scoreCard.computer++
+			} else {
+				scoreCard.player === 4 ? displayWinner('player') : scoreCard.player++
+			}
+
+			scoreKeeping(scoreCard)
+
+			displayScore(state)
 		}
-
-		scoreKeeping(scoreCard)
-
-		displayScore(state)
 	}
 
 	function scissorsSelection(this: HTMLButtonElement): void {
-		const _computerSelection = computerSelection()
-		state.playerSelection = 'scissors'
-		state.computerSelection = _computerSelection
+		if (roundFlag) {
+			const _computerSelection = computerSelection()
+			state.playerSelection = 'Scissors'
+			state.computerSelection = _computerSelection
 
-		if (_computerSelection === 'scissors') {
-			scoreCard.tie === 4 ? displayWinner('tie') : scoreCard.tie++
-		} else if (_computerSelection === 'rock') {
-			scoreCard.computer === 4 ? displayWinner('computer') : scoreCard.computer++
-		} else {
-			scoreCard.player === 4 ? displayWinner('player') : scoreCard.player++
+			if (_computerSelection === 'Scissors') {
+				scoreCard.tie === 4 ? displayWinner('tie') : scoreCard.tie++
+			} else if (_computerSelection === 'Rock') {
+				scoreCard.computer === 4 ? displayWinner('computer') : scoreCard.computer++
+			} else {
+				scoreCard.player === 4 ? displayWinner('player') : scoreCard.player++
+			}
+
+			scoreKeeping(scoreCard)
+
+			displayScore(state)
 		}
-
-		scoreKeeping(scoreCard)
-
-		displayScore(state)
 	}
 
 	function restartGame(this: HTMLButtonElement) {

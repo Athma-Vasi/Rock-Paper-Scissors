@@ -9,10 +9,19 @@ html {
 	box-sizing: inherit;
 }
 
+:root {
+	--clr-light: hsl(0, 3.4%, 94%);
+	--clr-med: hsl(0, 38.2%, 61.8%);
+	--clr-dark: hsl(0, 61.8%, 23.6%);
+	--clr-shadow-light: hsl(0, 1.6%, 100%);
+	--clr-shadow-dark: hsl(45, 11%, 76%);
+}
 .body {
 	height: 100vh;
 	max-width: 828px;
 	font-family: sans-serif;
+	background-color: var(--clr-light);
+	color: var(--clr-dark);
 }
 .container-all {
 	display: flex;
@@ -23,4 +32,30 @@ html {
 }
 .container-all > * {
 	margin: 1rem;
+}
+.displayScore {
+	height: 14.6vh;
+}
+
+.bttn {
+	outline: none;
+	border: none;
+	width: 23.6%;
+	height: 3rem;
+	border-radius: 3rem;
+	background-color: var(--clr-light);
+	box-shadow: -1.6px -2.6px 2.6px var(--clr-shadow-light),
+		-2.6px -4.2px 4.2px var(--clr-shadow-light),
+		-4.2px -6.9px 6.9px var(--clr-shadow-light), 1.6px 2.6px 2.6px var(--clr-shadow-dark),
+		2.6px 4.2px 4.2px var(--clr-shadow-dark), 4.2px 6.9px 6.9px var(--clr-shadow-dark);
+	color: var(--clr-dark);
+}
+
+.bttn:active {
+	box-shadow: inset -1.6px -2.6px 2.6px var(--clr-shadow-light),
+		inset -2.6px -4.2px 4.2px var(--clr-shadow-light),
+		inset -4.2px -6.9px 6.9px var(--clr-shadow-light),
+		inset 1.6px 2.6px 2.6px var(--clr-shadow-dark),
+		inset 2.6px 4.2px 4.2px var(--clr-shadow-dark),
+		inset 4.2px 6.9px 6.9px var(--clr-shadow-dark);
 }
