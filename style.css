@@ -109,7 +109,6 @@ tbody tr {
 .footer {
 	margin-top: 20rem;
 	display: flex;
-	outline: 1px solid rebeccapurple;
 	width: 828px;
 	justify-content: space-around;
 }
