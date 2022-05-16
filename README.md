@@ -2,6 +2,8 @@
 
 The first project for The Odin Project.
 
+**[Click me to view the project](https://athma-vasi.github.io/Rock-Paper-Scissors/)**
+
 ## What did I learn?
 
 1. **Setting up TypeScript**
